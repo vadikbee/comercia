@@ -1,38 +1,45 @@
 import { useEffect, useState, useMemo } from "react";
+import { useSearchParams } from "react-router-dom"; 
 import ProductDao from "../../entities/product/api/ProductDao";
 import type { ProductType } from "../../entities/product/model/ProductType";
 import ProductCard from "../../features/product_card/ProductCard";
 import "./Catalog.css";
 
-// Список категорий как в дизайне
 const CATEGORIES = ["All", "Smartphones", "Laptops", "Tablets", "TVs", "Headphones"];
 
 export default function Catalog() {
   const [products, setProducts] = useState<ProductType[]>([]);
-  // Удаляем filteredProducts из стейта, так как это вычисляемое значение
-  
-  const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-
-  // 1. Загружаем товары при открытии страницы
+ 
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  // Читаем категорию из URL
+  const categoryParam = searchParams.get("category");
+  const activeCategory = (categoryParam && CATEGORIES.includes(categoryParam)) 
+    ? categoryParam 
+    : "All";
+  
   useEffect(() => {
     ProductDao.getAllProducts().then(setProducts);
   }, []);
 
-  // 2. Фильтрация (Используем useMemo вместо useEffect)
-  // useMemo запоминает результат и пересчитывает его только если изменились зависимости
   const filteredProducts = useMemo(() => {
     let result = products;
 
-    // Фильтр по категории
+    // --- ИСПРАВЛЕННАЯ ФИЛЬТРАЦИЯ ---
+    // Используем префиксы ID (tv-, ph-, lap-) для точного определения категории
     if (activeCategory !== "All") {
-      // Временный хак для демо-данных
-      if (activeCategory === "TVs") {
-         result = result.filter(p => p.name.toLowerCase().includes("tv"));
-      } else if (activeCategory === "Laptops") {
-         result = result.filter(p => p.name.toLowerCase().includes("laptop") || p.name.toLowerCase().includes("asus")); 
-      }
-      // В реальном проекте тут будет проверка: p.category === activeCategory
+      const catLower = activeCategory.toLowerCase();
+      
+      result = result.filter(p => {
+        if (catLower === "tvs") return p.id.startsWith("tv-");
+        if (catLower === "laptops") return p.id.startsWith("lap-");
+        if (catLower === "smartphones") return p.id.startsWith("ph-");
+        if (catLower === "tablets") return p.id.startsWith("tab-");
+        if (catLower === "headphones") return p.id.startsWith("head-");
+        
+        return true; 
+      });
     }
 
     // Фильтр по поиску
@@ -43,6 +50,10 @@ export default function Catalog() {
 
     return result;
   }, [products, activeCategory, searchQuery]);
+
+  const handleCategoryClick = (cat: string) => {
+    setSearchParams({ category: cat });
+  };
 
   return (
     <div className="catalog-page">
@@ -59,13 +70,13 @@ export default function Catalog() {
         />
       </div>
 
-      {/* Категории (чипсы) */}
+      {/* Категории */}
       <div className="catalog-categories">
         {CATEGORIES.map(cat => (
           <button 
             key={cat}
             className={`cat-chip ${activeCategory === cat ? 'active' : ''}`}
-            onClick={() => setActiveCategory(cat)}
+            onClick={() => handleCategoryClick(cat)}
           >
             {cat}
           </button>
@@ -79,7 +90,7 @@ export default function Catalog() {
             <ProductCard key={product.id} product={product} />
           ))
         ) : (
-          <div className="no-results">No products found</div>
+          <div className="no-results">No products found for "{activeCategory}"</div>
         )}
       </div>
     </div>

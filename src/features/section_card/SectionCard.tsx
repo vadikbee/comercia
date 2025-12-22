@@ -4,7 +4,7 @@ import "./ui/SectionCard.css";
 
 export default function SectionCard({ section }: { section: HomePageSection }) {
   return (
-    <Link to={`/section/${section.slug}`} className="section-card">
+    <Link to={`/catalog?category=${section.title}`} className="section-card">
       <div className="card-image">
         {/* Если картинки нет, показываем заглушку */}
         <img src={section.imageUrl} alt={section.title} onError={(e) => e.currentTarget.style.display = 'none'} />

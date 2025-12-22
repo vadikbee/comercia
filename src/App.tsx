@@ -11,7 +11,8 @@ import Product from './pages/product/Product';
 import Checkout from './pages/checkout/Checkout';
 import { AppContext } from './features/app_context/AppContext';
 import CartDao from './entities/cart/api/CartDao';
-import type CartType from './entities/order/model/CartType';
+import Orders from './pages/orders/Orders';
+import type CartType from './entities/cart/model/CartType';
 import type ToastData from './features/app_context/ToastData';
 import type { UserType } from './entities/user/model/UserType';
 import Toast from './features/app_context/ui/Toast'; // Импорт тостера
@@ -53,7 +54,7 @@ export default function App() {
             <Route index element={<Home />} />
             {/* Добавляем маршрут каталога */}
             <Route path="catalog" element={<Catalog />} /> 
-            
+            <Route path="orders" element={<Orders />} /> 
             <Route path="cart" element={<CartPage />} />
             <Route path="checkout" element={<Checkout />} /> 
             <Route path="auth" element={<Auth />} />

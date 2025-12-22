@@ -1,48 +1,46 @@
-:root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* src/index.css или src/ui/Layout.css */
 
-  /* Переменные из твоего дизайна */
-  --bg-color: #EAEFF8;       /* Основной фон */
-  --white: #FFFFFF;          /* Белый */
-  --blue-primary: #2181F3;   /* Синий (как на кнопках и баннере) */
-  --text-main: #000000;      /* Черный текст */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+
+/* Если Ruberoid платный, заменим его на похожий, например, Montserrat или оставим Inter для всего */
+
+:root {
+  /* Цвета из макета */
+  --bg-color: #EAEFF8;       /* Светло-голубой фон */
+  --white: #FFFFFF;
+  --blue-primary: #2181F3;   /* Основной синий */
+  --blue-hover: #0d6efd;
+  --orange-accent: #FF5B04;  /* Оранжевый (для бейджей и акцентов) */
+  
+  --text-main: #000000;
   --text-gray: #777C82;      /* Серый текст */
-  --radius-main: 30px;       /* Скругление углов */
+  --text-light-gray: #9A9A9A;
+  
+  --border-radius-card: 30px; /* Большое скругление для карточек */
+  --border-radius-btn: 12px;
+  
+  /* Отступы */
+  --page-padding: 0 60px;
 }
 
 body {
   margin: 0;
   padding: 0;
-  min-width: 320px;
-  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--bg-color);
   color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Убираем стандартные отступы */
-* {
-  box-sizing: border-box;
+/* Сброс стилей для кнопок по умолчанию */
+button {
+  font-family: 'Inter', sans-serif;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Общий контейнер для страницы (белая подложка) */
-.page-container {
-  max-width: 1440px;
-  margin: 30px auto;
-  background-color: var(--white);
-  border-radius: var(--radius-main);
-  padding: 20px;
-  min-height: 90vh;
+/* Общий контейнер, имитирующий "лист" приложения по центру, как в дизайне */
+#root {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
