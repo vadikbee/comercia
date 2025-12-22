@@ -1,0 +1,113 @@
+/* Основной контейнер, имитирующий белую карточку из дизайна */
+.layout-wrapper {
+  max-width: 1440px;
+  margin: 30px auto;
+  background-color: var(--white);
+  border-radius: 30px;
+  min-height: 90vh;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  padding-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Шапка сайта */
+header {
+  padding: 30px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+}
+
+/* Логотип */
+.navbar-brand {
+  font-family: 'Ruberoid', sans-serif; /* Если шрифт подключен, иначе Inter */
+  font-style: italic;
+  font-weight: 700;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #000;
+  text-decoration: none;
+}
+
+.logo-circle {
+  width: 40px;
+  height: 40px;
+  background-color: var(--blue-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+}
+
+/* Навигация (Меню) */
+.navbar-nav {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-link {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--text-gray);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--blue-primary);
+}
+
+/* Иконки справа (Корзина, Профиль) */
+.nav-icons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.icon-btn {
+  font-size: 20px;
+  color: var(--text-gray);
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #FF5B04; /* Оранжевый из дизайна */
+  color: white;
+  font-size: 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Основной контент */
+main {
+  padding: 20px 60px;
+}
+
+/* Футер */
+footer {
+  padding: 40px 60px;
+  background-color: #110D0A;
+  color: #9A9A9A;
+  font-size: 14px;
+  margin-top: 50px;
+  border-radius: 0 0 30px 30px;
+}

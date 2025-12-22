@@ -1,0 +1,48 @@
+:root {
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Переменные из твоего дизайна */
+  --bg-color: #EAEFF8;       /* Основной фон */
+  --white: #FFFFFF;          /* Белый */
+  --blue-primary: #2181F3;   /* Синий (как на кнопках и баннере) */
+  --text-main: #000000;      /* Черный текст */
+  --text-gray: #777C82;      /* Серый текст */
+  --radius-main: 30px;       /* Скругление углов */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+}
+
+/* Убираем стандартные отступы */
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Общий контейнер для страницы (белая подложка) */
+.page-container {
+  max-width: 1440px;
+  margin: 30px auto;
+  background-color: var(--white);
+  border-radius: var(--radius-main);
+  padding: 20px;
+  min-height: 90vh;
+}

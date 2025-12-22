@@ -1,0 +1,67 @@
+.home-page {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 0 40px; /* Отступы по бокам */
+}
+
+/* --- Синий Баннер --- */
+.main-banner {
+    width: 100%;
+    height: 310px;
+    background-color: var(--blue-primary);
+    border-radius: 30px;
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; /* Чтобы декорации не вылезали */
+    color: var(--white);
+}
+
+.banner-title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.banner-subtitle {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* --- Поле поиска --- */
+.search-bar {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 16px;
+    color: var(--text-gray);
+}
+
+.search-bar i {
+    color: var(--text-gray);
+}
+
+/* --- Сетка категорий (подготовим заранее) --- */
+.categories-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}

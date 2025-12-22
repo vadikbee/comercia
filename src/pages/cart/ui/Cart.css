@@ -1,0 +1,83 @@
+.cart-page {
+    padding-bottom: 40px;
+}
+
+.cart-title {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+/* Контейнер для двух колонок */
+.cart-layout {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* Левая колонка (список) */
+.cart-items-list {
+    flex: 1; /* Занимает все свободное место */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Правая колонка (Итого) */
+.cart-summary {
+    width: 350px;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 20px; /* Чтобы "прилипала" при прокрутке */
+}
+
+.summary-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: var(--text-gray);
+}
+
+.summary-row.total {
+    color: var(--text-main);
+    font-weight: 700;
+    font-size: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+.btn-confirm {
+    width: 100%;
+    background-color: var(--blue-primary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-confirm:hover {
+    background-color: #0d6efd;
+}
+
+.empty-cart-message {
+    text-align: center;
+    padding: 50px;
+    font-size: 24px;
+    color: var(--text-gray);
+}

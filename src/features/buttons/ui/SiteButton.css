@@ -1,0 +1,14 @@
+.site-button {
+    display: inline-block;
+    border-radius: 7px;
+    padding: 7px 10px 7px 10px;
+    font-weight: 700;
+}
+.button-red {
+    background-color: maroon;
+    color: snow;
+}
+.button-white {
+    background-color: snow;
+    color: rgb(86, 86, 86)
+}
