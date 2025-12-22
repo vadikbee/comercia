@@ -1,83 +1,118 @@
 .cart-page {
-    padding-bottom: 40px;
+    padding-bottom: 60px;
+    background-color: #EAEFF8; /* Цвет фона из макета (серый/голубой) */
+    min-height: 100vh;
+    padding-top: 20px;
+}
+
+.cart-header-block {
+    margin-bottom: 20px;
 }
 
 .cart-title {
-    font-size: 42px;
+    font-size: 32px;
     font-weight: 700;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
+    color: #000;
 }
 
-/* Контейнер для двух колонок */
+.select-all-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+/* Сетка страницы: Слева список, Справа саммери */
 .cart-layout {
     display: flex;
     gap: 30px;
     align-items: flex-start;
 }
 
-/* Левая колонка (список) */
 .cart-items-list {
-    flex: 1; /* Занимает все свободное место */
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex: 1; /* Занимает всё доступное место */
 }
 
-/* Правая колонка (Итого) */
+/* Правая карточка "Your order" */
 .cart-summary {
     width: 350px;
     background-color: var(--white);
     border-radius: 20px;
     padding: 30px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    position: sticky;
-    top: 20px; /* Чтобы "прилипала" при прокрутке */
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
 }
 
 .summary-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
+    margin-bottom: 20px;
+}
+
+/* Список товаров в саммери */
+.summary-items-list {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.summary-item-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #000;
+    font-weight: 500;
+}
+
+.summary-item-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.summary-totals {
     margin-bottom: 20px;
 }
 
 .summary-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
-    font-size: 16px;
-    color: var(--text-gray);
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #9A9A9A;
 }
 
 .summary-row.total {
-    color: var(--text-main);
-    font-weight: 700;
-    font-size: 20px;
-    border-top: 1px solid #eee;
-    padding-top: 15px;
-    margin-top: 10px;
+    color: #000;
+    font-weight: 800;
+    font-size: 18px;
+    margin-top: 15px;
 }
 
 .btn-confirm {
     width: 100%;
     background-color: var(--blue-primary);
-    color: white;
+    color: #000000; /* <--- ИЗМЕНИЛИ НА ЧЕРНЫЙ */
     border: none;
     border-radius: 12px;
     padding: 15px;
     font-size: 16px;
     font-weight: 700;
-    margin-top: 20px;
     cursor: pointer;
     transition: background 0.2s;
 }
 
 .btn-confirm:hover {
     background-color: #0d6efd;
+    color: #FFFFFF; /* При наведении можно сделать белым, если фон становится темным, или оставить черным */
 }
 
-.empty-cart-message {
+.empty-state {
     text-align: center;
     padding: 50px;
-    font-size: 24px;
-    color: var(--text-gray);
+    color: #777;
 }
