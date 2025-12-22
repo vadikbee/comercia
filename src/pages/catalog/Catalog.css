@@ -51,7 +51,7 @@
     cursor: pointer;
     transition: all 0.2s;
     font-size: 16px;
-    /* Тень как в дизайне для неактивных кнопок */
+    
     box-shadow: 0 2px 10px rgba(0,0,0,0.02); 
 }
 
@@ -66,13 +66,41 @@
 
 /* Сетка товаров */
 .catalog-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: grid; /* Включаем Grid вместо Flex */
+    grid-template-columns: repeat(4, 1fr); /* Ровно 4 колонки одинаковой ширины */
+    gap: 20px; /* Отступы между карточками */
+    width: 100%;
 }
 
-/* Чтобы карточки вставали красиво, используем стили ProductCard, 
-   но можем задать контейнеру justify-content, если нужно */
+/* Адаптивность (чтобы на маленьких экранах не сжималось) */
+@media (max-width: 1200px) {
+    .catalog-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 колонки на ноутбуках */
+    }
+}
+
+@media (max-width: 900px) {
+    .catalog-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки на планшетах */
+    }
+}
+
+@media (max-width: 600px) {
+    .catalog-grid {
+        grid-template-columns: 1fr; /* 1 колонка на телефонах */
+    }
+}
+
+.no-results {
+    font-size: 18px;
+    color: #777;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    grid-column: 1 / -1; 
+}
+
+
 
 .no-results {
     font-size: 18px;

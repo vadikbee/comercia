@@ -4,50 +4,52 @@ import './CartItemCard.css';
 import { AppContext } from "../../../features/app_context/AppContext";
 import CartDao from "../../../entities/cart/api/CartDao";
 
-export default function CartItemCard({ cartItem }: { cartItem: CartItem }) {
+// 1. Расширяем пропсы: добавляем isSelected и onToggle
+interface Props {
+  cartItem: CartItem;
+  isSelected: boolean;
+  onToggle: (id: string) => void;
+}
+
+export default function CartItemCard({ cartItem, isSelected, onToggle }: Props) {
   const { cart, setCart } = useContext(AppContext);
 
+  // ... (функции incClick, decClick, removeClick оставляем без изменений) ...
   const incClick = () => {
     if(cartItem.product.stock && cartItem.product.stock <= cartItem.cnt) return;
-    
     const newCart = { ...cart };
     const item = newCart.items.find((ci: CartItem) => ci.product.id === cartItem.product.id);
-    if (item) { 
-      item.cnt += 1;
-      CartDao.calcPrices(newCart);
-      setCart(newCart);
-    }
+    if (item) { item.cnt += 1; CartDao.calcPrices(newCart); setCart(newCart); }
   };
 
   const decClick = () => {
     if(cartItem.cnt <= 1) return;
-    
     const newCart = { ...cart };
     const item = newCart.items.find((ci: CartItem) => ci.product.id === cartItem.product.id);
-    if (item) { 
-      item.cnt -= 1;
-      CartDao.calcPrices(newCart);
-      setCart(newCart);
-    }
+    if (item) { item.cnt -= 1; CartDao.calcPrices(newCart); setCart(newCart); }
   };
 
   const removeClick = () => {
     if(window.confirm("Удалить товар из корзины?")) {
       const newItems = cart.items.filter((ci: CartItem) => ci.product.id !== cartItem.product.id);
       const newCart = { ...cart, items: newItems };
-      CartDao.calcPrices(newCart); // Пересчитываем общую цену
+      CartDao.calcPrices(newCart); 
       setCart(newCart);
     }
   };
 
   return (
     <div className="cart-item-card">
-      {/* 1. Чекбокс */}
+      {/* 2. Привязываем чекбокс к пропсам */}
       <div className="item-checkbox">
-        <input type="checkbox" className="custom-checkbox" defaultChecked />
+        <input 
+          type="checkbox" 
+          className="custom-checkbox" 
+          checked={isSelected}
+          onChange={() => onToggle(cartItem.product.id)}
+        />
       </div>
 
-      {/* 2. Картинка */}
       <div className="item-img-wrapper">
         <img
           src={cartItem.product.imageUrl}
@@ -56,7 +58,6 @@ export default function CartItemCard({ cartItem }: { cartItem: CartItem }) {
         />
       </div>
 
-      {/* 3. Инфо по центру */}
       <div className="item-info">
         <div>
             <div className="item-title">{cartItem.product.name}</div>
@@ -69,17 +70,13 @@ export default function CartItemCard({ cartItem }: { cartItem: CartItem }) {
         </div>
       </div>
 
-      {/* 4. Правая колонка (Цена и кнопки) */}
       <div className="item-actions">
         <div className="action-top-row">
             <div className="item-price">{cartItem.price.toMoney()} $</div>
-            {/* Иконка сердца (декоративная) */}
             <i className="bi bi-heart icon-action"></i>
-            {/* Иконка удаления */}
             <i className="bi bi-x-lg icon-action icon-remove" onClick={removeClick}></i>
         </div>
 
-        {/* Плюс/Минус */}
         <div className="qty-control">
             <button className="qty-btn" onClick={decClick}>−</button>
             <span className="qty-value">{cartItem.cnt}</span>

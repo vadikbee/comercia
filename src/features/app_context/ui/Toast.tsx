@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import type ToastData from "../ToastData";
-import "./Toast.css"; // Сейчас создадим
+import "./Toast.css"; 
 
 export default function Toast({ data, onClose }: { data: ToastData, onClose: () => void }) {
   

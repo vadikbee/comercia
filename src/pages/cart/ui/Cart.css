@@ -96,7 +96,7 @@
 .btn-confirm {
     width: 100%;
     background-color: var(--blue-primary);
-    color: #000000; /* <--- ИЗМЕНИЛИ НА ЧЕРНЫЙ */
+    color: #000000; 
     border: none;
     border-radius: 12px;
     padding: 15px;
@@ -108,7 +108,7 @@
 
 .btn-confirm:hover {
     background-color: #0d6efd;
-    color: #FFFFFF; /* При наведении можно сделать белым, если фон становится темным, или оставить черным */
+    color: #FFFFFF; 
 }
 
 .empty-state {
