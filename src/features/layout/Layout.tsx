@@ -2,24 +2,21 @@ import { Link, Outlet } from "react-router-dom";
 import "./ui/Layout.css";
 import { useContext } from "react";
 import { AppContext } from "../app_context/AppContext";
+// 1. Импортируем тип товара в корзине
+import type CartItem from "../../entities/cart/model/CartItem";
 
 export default function Layout() {
-  // 1. Получаем корзину из глобального состояния
   const { cart } = useContext(AppContext);
 
-  // 2. Считаем общее количество товаров (суммируем поле cnt каждого товара)
-  // Если items пустой, вернет 0
-  const totalItems = cart.items.reduce((sum, item) => sum + item.cnt, 0);
+  // 2. Явно указываем типы аргументов: sum (число) и item (CartItem)
+  const totalItems = cart.items.reduce((sum: number, item: CartItem) => sum + item.cnt, 0);
 
   return (
     <div className="layout-wrapper">
       <header>
         {/* Логотип */}
         <Link to="/" className="navbar-brand">
-          <div className="logo-circle">
-            <i className="bi bi-cart-fill"></i>
-          </div>
-          ONLINE SHOP
+          <img src="/img/logo/logo.png" alt="Online Shop" className="site-logo" />
         </Link>
 
         {/* Меню навигации */}

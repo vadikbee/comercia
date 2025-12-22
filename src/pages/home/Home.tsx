@@ -1,57 +1,84 @@
 import { useEffect, useState } from "react";
-import "./ui/styles.css"; // Твой переименованный файл стилей
+import { useNavigate } from "react-router-dom"; // 1. Добавляем хук навигации
+import "./ui/Home.css";
 import SectionDao from "../../entities/section/api/SectionDao";
-import SectionCard from "../../features/section_card/SectionCard";
-import ProductDao from "../../entities/product/api/ProductDao"; // Импорт Дао продуктов
-import ProductCard from "../../features/product_card/ProductCard"; // Импорт карточки
+import ProductDao from "../../entities/product/api/ProductDao";
+import ProductCard from "../../features/product_card/ProductCard";
 import type { HomePageSection } from "../../features/section_card/types/section";
 import type { ProductType } from "../../entities/product/model/ProductType";
+import SectionCard from "../../features/section_card/SectionCard";
 
 export default function Home() {
   const [sections, setSections] = useState<HomePageSection[]>([]);
   const [bestsellers, setBestsellers] = useState<ProductType[]>([]);
+  
+  // 2. Состояние для поиска
+  const [searchValue, setSearchValue] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // 1. Загружаем категории
     SectionDao.getSections().then(setSections);
-    
-    // 2. Загружаем хиты продаж
     ProductDao.getBestsellers().then(setBestsellers);
   }, []);
+
+  // 3. Функция перехода в каталог
+  const handleSearch = () => {
+    if (searchValue.trim()) {
+      // Переходим в каталог и передаем параметр ?search=...
+      navigate(`/catalog?search=${searchValue}`);
+    }
+  };
 
   return (
     <div className="home-page">
       
-      {/* Баннер */}
       <div className="main-banner">
-        <h1 className="banner-title">Welcome to the online shop!</h1>
-        <p className="banner-subtitle">Thousands of products from trusted sellers with fast delivery.</p>
-        <div className="search-bar">
-          <i className="bi bi-search"></i>
-          <input type="text" placeholder="Searching products..." />
+        <div className="banner-content">
+          <h1 className="banner-title">Welcome to the online shop!</h1>
+          <p className="banner-subtitle">
+            Thousands of products from trusted sellers with fast delivery.
+          </p>
+          
+          {/* 4. Привязываем инпут */}
+          <div className="banner-search">
+            <i className="bi bi-search" onClick={handleSearch} style={{cursor: 'pointer'}}></i>
+            <input 
+                type="text" 
+                placeholder="Searching products..." 
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && handleSearch()} // Поиск по Enter
+            />
+          </div>
         </div>
+
+        {/* Декоративные картинки */}
+        <img src="/img/headphonesfull.png.webp" alt="headphones" className="banner-decor decor-headphones" />
+        <img src="/img/big-2025-iphonefull.png.webp" alt="phone" className="banner-decor decor-phone" />
+        <img src="/img/wide-noutfull.png.webp" alt="laptop" className="banner-decor decor-laptop" />
       </div>
 
       {/* Секция Категорий */}
       <div>
         <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '20px' }}>Categories</h2>
+        
+        {/* УБРАЛИ style={{...}}, оставили только className */}
         <div className="categories-grid">
-           {sections.map((sec) => (
-               <SectionCard section={sec} key={sec.slug} />
-           ))}
+          {sections.map((sec) => (
+            <SectionCard section={sec} key={sec.slug} />
+          ))}
         </div>
       </div>
 
-      {/* Секция Хиты Продаж (Новая!) */}
+      {/* Секция Хиты Продаж */}
       <div style={{ marginTop: '20px' }}>
         <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '20px' }}>Bestsellers</h2>
-        <div className="categories-grid"> {/* Используем тот же класс сетки или создай products-grid */}
-           {bestsellers.map((product) => (
-               <ProductCard product={product} key={product.id} />
-           ))}
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px'}}>
+          {bestsellers.map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
         </div>
       </div>
-
     </div>
   );
 }

@@ -18,21 +18,26 @@ header {
   align-items: center;
   justify-content: space-between;
   background: transparent;
+  gap: 20px; /* Чтобы блоки не слипались при сужении */
+  flex-wrap: nowrap; /* Запрещаем перенос блоков на десктопе */
 }
 
 /* Логотип */
 .navbar-brand {
-  font-family: 'Ruberoid', sans-serif; /* Если шрифт подключен, иначе Inter */
-  font-style: italic;
-  font-weight: 700;
-  font-size: 24px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: #000;
   text-decoration: none;
+  flex-shrink: 0; /* Логотип не должен сжиматься */
 }
 
+/* Класс для самой картинки логотипа */
+.site-logo {
+  height: 50px; /* Высота логотипа */
+  width: auto;  
+  object-fit: contain; 
+}
+
+/* Старый класс (можно оставить на всякий случай или удалить) */
 .logo-circle {
   width: 40px;
   height: 40px;
@@ -48,19 +53,25 @@ header {
 /* Навигация (Меню) */
 .navbar-nav {
   display: flex;
-  gap: 40px;
-  align-items: center;
+  gap: 50px; 
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  
+  /* Разрешаем меню сжиматься, если места мало */
+  justify-content: center;
+  flex-shrink: 1; 
 }
 
 .nav-link {
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 18px;
   color: var(--text-gray);
   text-decoration: none;
   transition: color 0.2s;
+  
+  /* ВАЖНО: Запрет переноса текста на новую строку */
+  white-space: nowrap; 
 }
 
 .nav-link:hover, .nav-link.active {
@@ -70,31 +81,43 @@ header {
 /* Иконки справа (Корзина, Профиль) */
 .nav-icons {
   display: flex;
-  gap: 20px;
+  gap: 30px;
   align-items: center;
+  flex-shrink: 0; /* Иконки не должны сжиматься */
 }
 
 .icon-btn {
-  font-size: 20px;
+  font-size: 28px;
   color: var(--text-gray);
   position: relative;
   cursor: pointer;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
 }
 
+.icon-btn:hover {
+  color: var(--text-main);
+}
+
+/* Бейджик (красный кружок с цифрой) */
 .cart-badge {
   position: absolute;
-  top: -8px;
+  top: -5px;
   right: -8px;
-  background-color: #FF5B04; /* Оранжевый из дизайна */
+  background-color: var(--orange-accent); /* #FF5B04 */
   color: white;
-  font-size: 10px;
-  width: 16px;
-  height: 16px;
+  font-size: 12px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--white);
 }
 
 /* Основной контент */
@@ -110,4 +133,55 @@ footer {
   font-size: 14px;
   margin-top: 50px;
   border-radius: 0 0 30px 30px;
+}
+
+/* --- АДАПТАЦИЯ (Чтобы не съезжало при масштабировании) --- */
+
+/* 1. Для ноутбуков и планшетов (ширина до 1200px) */
+@media (max-width: 1200px) {
+  header {
+    padding: 20px 30px; /* Уменьшаем отступы по бокам */
+  }
+  
+  .navbar-nav {
+    gap: 25px; /* Уменьшаем расстояние между ссылками */
+  }
+  
+  .nav-link {
+    font-size: 16px; /* Чуть уменьшаем шрифт */
+  }
+  
+  .site-logo {
+    height: 40px; /* Чуть уменьшаем лого */
+  }
+}
+
+/* 2. Для мобильных устройств (ширина до 768px) */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column; /* Ставим элементы друг под другом */
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .navbar-nav {
+    gap: 15px;
+    width: 100%;
+    justify-content: space-between; /* Распределяем ссылки равномерно */
+    flex-wrap: wrap; /* Если не влезут, перейдут на след. строку */
+  }
+  
+  .nav-link {
+    font-size: 14px;
+  }
+  
+  .nav-icons {
+    width: 100%;
+    justify-content: flex-end; /* Иконки справа */
+    gap: 20px;
+  }
+  
+  main {
+    padding: 20px;
+  }
 }
