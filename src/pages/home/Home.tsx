@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"; // 1. Добавляем хук навигации
+import { useNavigate } from "react-router-dom"; 
 import "./ui/Home.css";
 import SectionDao from "../../entities/section/api/SectionDao";
 import ProductDao from "../../entities/product/api/ProductDao";
@@ -12,7 +12,7 @@ export default function Home() {
   const [sections, setSections] = useState<HomePageSection[]>([]);
   const [bestsellers, setBestsellers] = useState<ProductType[]>([]);
   
-  // 2. Состояние для поиска
+
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
@@ -21,7 +21,7 @@ export default function Home() {
     ProductDao.getBestsellers().then(setBestsellers);
   }, []);
 
-  // 3. Функция перехода в каталог
+
   const handleSearch = () => {
     if (searchValue.trim()) {
       // Переходим в каталог и передаем параметр ?search=...
@@ -62,7 +62,7 @@ export default function Home() {
       <div>
         <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '20px' }}>Categories</h2>
         
-        {/* УБРАЛИ style={{...}}, оставили только className */}
+        { }
         <div className="categories-grid">
           {sections.map((sec) => (
             <SectionCard section={sec} key={sec.slug} />

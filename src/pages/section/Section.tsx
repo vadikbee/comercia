@@ -13,7 +13,7 @@ export default function Section() {
         if(typeof(slug) != 'undefined') {
             SectionDao.getSection(slug).then(setPageData);
         }        
-    }, []);
+    }, [ ]);
 
     return <>
     <h1>Раздел: {slug}</h1>

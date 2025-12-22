@@ -6,7 +6,6 @@ import CartPage from './pages/cart/Cart';
 import Auth from './pages/auth/Auth';
 import Privacy from './pages/privacy/Privacy';
 import Catalog from './pages/catalog/Catalog'; 
-// Импортируем страницу товара (убедись, что путь правильный, если нет - поправь)
 import Product from './pages/product/Product';
 import Checkout from './pages/checkout/Checkout';
 import { AppContext } from './features/app_context/AppContext';
@@ -18,8 +17,7 @@ import type { UserType } from './entities/user/model/UserType';
 import Toast from './features/app_context/ui/Toast'; // Импорт тостера
 
 export default function App() {
-  // 1. Состояние пользователя
-  const [user, setUser] = useState<UserType | null>(() => {
+   const [user, setUser] = useState<UserType | null>(() => {
     const savedUser = window.localStorage.getItem("user-komercia");
     if (savedUser) {
       try {
@@ -32,14 +30,13 @@ export default function App() {
     return null;
   });
   
-  // 2. Состояние корзины
-  const [cart, setCart] = useState<CartType>(CartDao.restoreSaved());
+    const [cart, setCart] = useState<CartType>(CartDao.restoreSaved());
   
   useEffect(() => {
     CartDao.save(cart);
   }, [cart]);
 
-  // 3. Состояние уведомлений (Toast)
+  
   const [toast, setToast] = useState<ToastData | null>(null);
 
   const showToast = (data: ToastData) => {

@@ -5,7 +5,7 @@ import type { ProductType } from "../../entities/product/model/ProductType";
 import "./ui/Product.css";
 import { AppContext } from "../../features/app_context/AppContext";
 import CartDao from "../../entities/cart/api/CartDao";
-import type CartItem from "../../entities/order/model/CartItem";
+import type CartItem from "../../entities/cart/model/CartItem";
 
 export default function Product() {
   const { slug } = useParams<{ slug: string }>();
@@ -19,7 +19,7 @@ export default function Product() {
   useEffect(() => {
     if (slug) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setLoading(true); // Игнорируем правило, так как нам нужно сбросить UI в загрузку
+      setLoading(true); 
       
       ProductDao.getProduct(slug)
         .then((data) => {
@@ -33,8 +33,7 @@ export default function Product() {
     }
   }, [slug]);
 
-  // Проверяем, есть ли товар уже в корзине
-  const isInCart = product ? cart.items.some(item => item.product.id === product.id) : false;
+  const isInCart = product ? cart.items.some((item: CartItem) => item.product.id === product.id) : false;
 
   const addToCart = () => {
     if (!product) return;

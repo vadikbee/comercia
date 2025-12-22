@@ -2,13 +2,13 @@ import { Link, Outlet } from "react-router-dom";
 import "./ui/Layout.css";
 import { useContext } from "react";
 import { AppContext } from "../app_context/AppContext";
-// 1. Импортируем тип товара в корзине
+
 import type CartItem from "../../entities/cart/model/CartItem";
 
 export default function Layout() {
   const { cart } = useContext(AppContext);
 
-  // 2. Явно указываем типы аргументов: sum (число) и item (CartItem)
+  
   const totalItems = cart.items.reduce((sum: number, item: CartItem) => sum + item.cnt, 0);
 
   return (

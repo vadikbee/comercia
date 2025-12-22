@@ -34,7 +34,7 @@
     opacity: 0.9;
 }
 
-/* --- Поле поиска --- */
+
 .search-bar {
     background: var(--white);
     border-radius: 12px;
@@ -58,7 +58,7 @@
     color: var(--text-gray);
 }
 
-/* --- Сетка категорий (подготовим заранее) --- */
+
 .categories-grid {
     display: flex;
     flex-wrap: wrap;
