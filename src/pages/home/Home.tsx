@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom"; 
 import "./ui/Home.css";
 import SectionDao from "../../entities/section/api/SectionDao";
@@ -7,24 +7,35 @@ import ProductCard from "../../features/product_card/ProductCard";
 import type { HomePageSection } from "../../features/section_card/types/section";
 import type { ProductType } from "../../entities/product/model/ProductType";
 import SectionCard from "../../features/section_card/SectionCard";
+import { AppContext } from "../../features/app_context/AppContext"; 
 
 export default function Home() {
   const [sections, setSections] = useState<HomePageSection[]>([]);
   const [bestsellers, setBestsellers] = useState<ProductType[]>([]);
   
-
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    SectionDao.getSections().then(setSections);
-    ProductDao.getBestsellers().then(setBestsellers);
-  }, []);
+  // Достаем функцию управления загрузкой из контекста
+  const { setIsLoading } = useContext(AppContext);
 
+  useEffect(() => {
+    // 1. Включаем загрузку
+    setIsLoading(true);
+
+    // 2. Ждем выполнения обоих запросов
+    Promise.all([
+      SectionDao.getSections().then(setSections),
+      ProductDao.getBestsellers().then(setBestsellers)
+    ])
+    .finally(() => {
+      // 3. Выключаем загрузку, когда всё готово
+      setIsLoading(false);
+    });
+  }, [setIsLoading]);
 
   const handleSearch = () => {
     if (searchValue.trim()) {
-      // Переходим в каталог и передаем параметр ?search=...
       navigate(`/catalog?search=${searchValue}`);
     }
   };
@@ -39,16 +50,15 @@ export default function Home() {
             Thousands of products from trusted sellers with fast delivery.
           </p>
           
-          {/* 4. Привязываем инпут */}
           <div className="banner-search">
-            <i className="bi bi-search" onClick={handleSearch} style={{cursor: 'pointer'}}></i>
-            <input 
+             <i className="bi bi-search" onClick={handleSearch} style={{cursor: 'pointer'}}></i>
+             <input 
                 type="text" 
                 placeholder="Searching products..." 
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleSearch()} // Поиск по Enter
-            />
+                onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+             />
           </div>
         </div>
 
@@ -61,12 +71,10 @@ export default function Home() {
       {/* Секция Категорий */}
       <div>
         <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '20px' }}>Categories</h2>
-        
-        { }
         <div className="categories-grid">
-          {sections.map((sec) => (
-            <SectionCard section={sec} key={sec.slug} />
-          ))}
+           {sections.map((sec) => (
+             <SectionCard section={sec} key={sec.slug} />
+           ))}
         </div>
       </div>
 
@@ -74,11 +82,12 @@ export default function Home() {
       <div style={{ marginTop: '20px' }}>
         <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '20px' }}>Bestsellers</h2>
         <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px'}}>
-          {bestsellers.map((product) => (
-            <ProductCard product={product} key={product.id} />
-          ))}
+           {bestsellers.map((product) => (
+             <ProductCard product={product} key={product.id} />
+           ))}
         </div>
       </div>
+
     </div>
   );
 }
