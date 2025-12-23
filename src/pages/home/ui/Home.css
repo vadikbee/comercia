@@ -9,7 +9,7 @@
 
 /* --- СИНИЙ БАННЕР --- */
 .main-banner {
-  width: 100%;
+  width: 95%;
   height: 310px;
   background-color: #2181F3; /* Синий из фигмы */
   border-radius: 30px;
@@ -20,6 +20,7 @@
   flex-direction: column;
   justify-content: center;
   color: #FFFFFF;
+  
 }
 
 .banner-content {

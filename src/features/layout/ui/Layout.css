@@ -1,15 +1,5 @@
 /* Основной контейнер, имитирующий белую карточку из дизайна */
-.layout-wrapper {
-  max-width: 1440px;
-  margin: 30px auto;
-  background-color: var(--white);
-  border-radius: 30px;
-  min-height: 90vh;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  padding-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-}
+
 
 /* Шапка сайта */
 header {
