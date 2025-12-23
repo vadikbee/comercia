@@ -29,6 +29,8 @@ body {
   background-color: var(--bg-color);
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
+  /* Убираем лишние отступы, если были */
+  min-height: 100vh;
 }
 
 /* Сброс стилей для кнопок по умолчанию */
@@ -38,8 +40,9 @@ button {
 
 
 #root {
-  display: flex;
-  justify-content: center;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  /* Убираем flex-центрирование и паддинги, которые сжимали сайт */
+  display: block; 
+  width: 100%;
+  min-height: 100vh;
+  padding: 0; /* ВАЖНО: убираем отступы, чтобы фон растянулся */
 }

@@ -27,6 +27,7 @@
   position: relative;
   z-index: 2; /* Текст поверх картинок */
   max-width: 600px;
+  margin-left: 5%;
 }
 
 .banner-title {
@@ -35,6 +36,7 @@
   font-size: 48px;
   line-height: 1.2;
   margin-bottom: 15px;
+  
 }
 
 .banner-subtitle {
@@ -42,6 +44,7 @@
   font-weight: 500;
   font-size: 20px;
   margin-bottom: 30px;
+  
   opacity: 0.9;
 }
 
@@ -140,4 +143,29 @@
   .categories-grid {
     grid-template-columns: 1fr; /* 1 на телефонах */
   }
+}
+/* Убираем ограничение ширины у самого компонента страницы, если оно было */
+.home-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Синий баннер на всю ширину */
+.main-banner {
+  width: 100%; /* Растягиваем */
+  border-radius: 0; /* В макете он может быть скруглен внутри, но фон должен быть широким? */
+  /* Если фон должен быть на всю ширину, а контент внутри: */
+  background-color: #2181F3; 
+  display: flex;
+  justify-content: center; /* Центрируем контент внутри полосы */
+  padding: 40px 0;
+}
+
+/* Обертка контента внутри баннера, чтобы он не улетал к краям */
+.banner-content-wrapper {
+  max-width: 1240px;
+  width: 100%;
+  padding: 0 20px;
+  /* Тут уже flex и верстка самого баннера */
 }

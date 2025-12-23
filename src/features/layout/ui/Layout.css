@@ -1,15 +1,39 @@
-/* Основной контейнер, имитирующий белую карточку из дизайна */
+/* 1. ГЛОБАЛЬНАЯ ОБЕРТКА */
+/* Прижимает футер к низу и убирает горизонтальную прокрутку */
+.layout-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-color); /* #EAEFF8 или ваш цвет фона */
+}
 
+/* 2. КОНТЕЙНЕР */
+/* Ограничивает ширину контента по центру (как в дизайне) */
+.container {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
 
-/* Шапка сайта */
+/* --- ШАПКА (HEADER) --- */
 header {
-  padding: 30px 60px;
+  width: 100%;
+  padding: 30px 0; /* Отступ сверху/снизу */
+  background: transparent;
+  flex-shrink: 0; /* Чтобы шапка не сжималась */
+}
+
+/* Внутренний блок шапки (внутри контейнера), который выстраивает элементы в ряд */
+.header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: transparent;
-  gap: 20px; /* Чтобы блоки не слипались при сужении */
-  flex-wrap: nowrap; /* Запрещаем перенос блоков на десктопе */
+  width: 100%;
+  gap: 20px;
 }
 
 /* Логотип */
@@ -17,68 +41,50 @@ header {
   display: flex;
   align-items: center;
   text-decoration: none;
-  flex-shrink: 0; /* Логотип не должен сжиматься */
+  flex-shrink: 0;
 }
 
-/* Класс для самой картинки логотипа */
 .site-logo {
-  height: 50px; /* Высота логотипа */
-  width: auto;  
-  object-fit: contain; 
+  height: 50px;
+  width: auto;
+  object-fit: contain;
 }
 
-/* Старый класс (можно оставить на всякий случай или удалить) */
-.logo-circle {
-  width: 40px;
-  height: 40px;
-  background-color: var(--blue-primary);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 20px;
-}
-
-/* Навигация (Меню) */
+/* МЕНЮ НАВИГАЦИИ (Восстанавливаем стили) */
 .navbar-nav {
-  display: flex;
-  gap: 50px; 
-  list-style: none;
+  display: flex;          /* Выстраивает пункты в ряд */
+  gap: 50px;              /* Расстояние между пунктами */
+  list-style: none;       /* Убирает точки списка */
   margin: 0;
   padding: 0;
-  
-  /* Разрешаем меню сжиматься, если места мало */
-  justify-content: center;
-  flex-shrink: 1; 
+  align-items: center;
 }
 
 .nav-link {
-  font-weight: 600;
-  font-size: 18px;
-  color: var(--text-gray);
-  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #777C82;         /* Серый цвет текста */
+  text-decoration: none;  /* Убирает подчеркивание */
   transition: color 0.2s;
-  
-  /* ВАЖНО: Запрет переноса текста на новую строку */
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 .nav-link:hover, .nav-link.active {
-  color: var(--blue-primary);
+  color: #2181F3;         /* Синий при наведении */
 }
 
-/* Иконки справа (Корзина, Профиль) */
+/* ИКОНКИ СПРАВА */
 .nav-icons {
   display: flex;
   gap: 30px;
   align-items: center;
-  flex-shrink: 0; /* Иконки не должны сжиматься */
+  flex-shrink: 0;
 }
 
 .icon-btn {
-  font-size: 28px;
-  color: var(--text-gray);
+  font-size: 24px;
+  color: #777C82;
   position: relative;
   cursor: pointer;
   text-decoration: none;
@@ -89,89 +95,125 @@ header {
 }
 
 .icon-btn:hover {
-  color: var(--text-main);
+  color: #000;
 }
 
-/* Бейджик (красный кружок с цифрой) */
+/* Бейджик корзины */
 .cart-badge {
   position: absolute;
-  top: -5px;
+  top: -8px;
   right: -8px;
-  background-color: var(--orange-accent); /* #FF5B04 */
+  background-color: #FF5B04;
   color: white;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--white);
+  border: 2px solid #fff;
 }
 
-/* Основной контент */
+/* --- ОСНОВНОЙ КОНТЕНТ --- */
 main {
-  padding: 20px 60px;
+  flex: 1; /* Растягивается на всю свободную высоту */
+  width: 100%;
+  padding: 0; /* Убираем отступы, чтобы баннеры были на всю ширину */
+  display: flex;
+  flex-direction: column;
 }
 
-/* Футер */
+/* --- ПОДВАЛ (FOOTER) --- */
 footer {
-  padding: 40px 60px;
-  background-color: #110D0A;
+  width: 100%;
+  background-color: #110D0A; /* Черная плашка на всю ширину */
   color: #9A9A9A;
+  margin-top: auto; /* Прижимает футер к низу страницы */
+  padding: 60px 0 40px 0;
+  border-radius: 0; /* Убираем скругления */
+}
+
+/* Стили внутри футера */
+.footer-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.footer-nav-col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-col-title {
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.footer-link {
+  color: #9A9A9A;
+  text-decoration: none;
   font-size: 14px;
-  margin-top: 50px;
-  border-radius: 0 0 30px 30px;
+  transition: color 0.2s;
 }
 
-/* --- АДАПТАЦИЯ (Чтобы не съезжало при масштабировании) --- */
+.footer-link:hover {
+  color: #FFFFFF;
+}
 
-/* 1. Для ноутбуков и планшетов (ширина до 1200px) */
-@media (max-width: 1200px) {
-  header {
-    padding: 20px 30px; /* Уменьшаем отступы по бокам */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.social-link {
+  color: white;
+  font-size: 20px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.social-link:hover {
+  opacity: 1;
+}
+
+/* --- АДАПТИВ (Мобильная версия) --- */
+@media (max-width: 900px) {
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
   }
   
   .navbar-nav {
-    gap: 25px; /* Уменьшаем расстояние между ссылками */
-  }
-  
-  .nav-link {
-    font-size: 16px; /* Чуть уменьшаем шрифт */
-  }
-  
-  .site-logo {
-    height: 40px; /* Чуть уменьшаем лого */
-  }
-}
-
-/* 2. Для мобильных устройств (ширина до 768px) */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column; /* Ставим элементы друг под другом */
-    gap: 15px;
-    padding: 20px;
-  }
-
-  .navbar-nav {
-    gap: 15px;
-    width: 100%;
-    justify-content: space-between; /* Распределяем ссылки равномерно */
-    flex-wrap: wrap; /* Если не влезут, перейдут на след. строку */
-  }
-  
-  .nav-link {
-    font-size: 14px;
-  }
-  
-  .nav-icons {
-    width: 100%;
-    justify-content: flex-end; /* Иконки справа */
     gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-grid {
+    flex-direction: column;
+    gap: 30px;
   }
   
-  main {
-    padding: 20px;
+  .footer-bottom {
+    flex-direction: column-reverse;
+    gap: 20px;
+    align-items: flex-start;
   }
 }

@@ -14,6 +14,7 @@
     font-weight: 700;
     margin-bottom: 10px;
     color: #000;
+    margin-left: 5%;
 }
 
 .select-all-row {
@@ -23,6 +24,7 @@
     font-weight: 500;
     color: #000;
     margin-bottom: 20px;
+    margin-left: 5%;
 }
 
 /* Сетка страницы: Слева список, Справа саммери */
