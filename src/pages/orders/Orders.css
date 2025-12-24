@@ -1,9 +1,19 @@
-/* Основной контейнер страницы */
 .orders-page {
     padding-bottom: 60px;
-    max-width: 1000px; /* Ограничим ширину для удобства чтения */
-    margin: 0 auto;    /* Центрируем весь блок на странице */
     width: 100%;
+    display: flex;
+    justify-content: center; /* Центрируем карточку */
+}
+
+/* --- БОЛЬШАЯ БЕЛАЯ КАРТОЧКА --- */
+.orders-container {
+    background-color: #EAEFF8;
+    border-radius: 30px;
+    padding: 40px 60px;
+    max-width: 1000px;
+    width: 100%;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    min-height: 400px;
 }
 
 .orders-title {
@@ -19,126 +29,92 @@
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    /* margin-left удален, чтобы не сдвигалось вправо */
 }
 
-/* --- ПУСТОЕ СОСТОЯНИЕ (Центрирование) --- */
+/* --- ПУСТОЕ СОСТОЯНИЕ --- */
 .no-orders {
     display: flex;
     flex-direction: column;
-    align-items: center;    /* Центр по горизонтали */
-    justify-content: center; /* Центр по вертикали */
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    min-height: 300px;      /* Высота блока, чтобы было красиво */
+    min-height: 300px;
     color: #999;
-    gap: 15px;
 }
 
-.btn-go-shopping {
-    background-color: var(--blue-primary); /* Синий цвет */
-    color: white;
-    padding: 12px 24px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background 0.2s;
-    margin-top: 10px;
-}
-
-.btn-go-shopping:hover {
-    background-color: #0d6efd;
-}
-
-/* --- КАРТОЧКА ЗАКАЗА --- */
+/* --- КАРТОЧКА ЗАКАЗА (СЕРАЯ ВНУТРИ БЕЛОЙ) --- */
 .order-card {
-    background-color: #FFFFFF;
+    background-color: #F8F9FA; /* Светло-серый фон заказа */
     border-radius: 20px;
     padding: 25px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
     border: 1px solid #eee;
     transition: transform 0.2s;
 }
 
 .order-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(0,0,0,0.05);
 }
 
-/* Шапка заказа (ID, Дата, Статус, Удалить) */
+/* Шапка заказа */
 .order-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid #e0e0e0;
     padding-bottom: 15px;
     margin-bottom: 20px;
 }
 
-.order-id {
-    font-weight: 700;
-    font-size: 18px;
-    color: #000;
-    margin-bottom: 4px;
-}
-
-.order-date {
-    color: #999;
-    font-size: 14px;
-}
-
-.order-header-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+.order-id { font-weight: 700; font-size: 18px; color: #000; margin-bottom: 4px; }
+.order-date { color: #999; font-size: 14px; }
+.order-header-right { display: flex; align-items: center; gap: 15px; }
 
 .order-status {
     padding: 6px 12px;
     border-radius: 8px;
     font-size: 14px;
     font-weight: 600;
-    background-color: #e3f2fd;
+    background-color: #fff; /* Белый фон статуса */
     color: #2196f3;
-    text-transform: capitalize;
+    border: 1px solid #e3f2fd;
 }
 
 /* Кнопка удаления */
 .btn-delete-order {
-    background: none;
-    border: none;
+    background: #fff;
+    border: 1px solid #ffccc7;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 20px;
-    color: #ff4d4f; /* Красный */
-    opacity: 0.6;
-    transition: opacity 0.2s, transform 0.2s;
-    padding: 5px;
+    font-size: 18px;
+    color: #ff4d4f;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
 }
 
 .btn-delete-order:hover {
-    opacity: 1;
-    transform: scale(1.1);
+    background-color: #fff1f0;
+    transform: scale(1.05);
 }
 
-/* Тело заказа (Картинки и Цена) */
+/* Тело заказа */
 .order-body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Адаптивность для мобилок */
+    flex-wrap: wrap;
     gap: 20px;
 }
 
-.order-preview-images {
-    display: flex;
-    gap: 10px;
-}
+.order-preview-images { display: flex; gap: 10px; }
 
 .order-img-thumb {
     width: 70px;
     height: 70px;
-    background: #F8F9FA;
+    background: #FFFFFF; /* Белый фон под картинкой */
     border-radius: 12px;
     padding: 5px;
     display: flex;
@@ -153,23 +129,13 @@
     object-fit: contain;
 }
 
-/* Итоговая информация */
-.order-summary {
-    text-align: right;
-    min-width: 150px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
+.order-summary { text-align: right; min-width: 150px; display: flex; flex-direction: column; gap: 5px; }
+.order-total { font-size: 16px; color: #666; }
+.order-total span { font-weight: 800; font-size: 24px; color: #000; margin-left: 10px; }
 
-.order-total {
-    font-size: 16px;
-    color: #666;
-}
-
-.order-total span {
-    font-weight: 800;
-    font-size: 24px; /* Цена крупно */
-    color: #000;
-    margin-left: 10px;
+/* Адаптив */
+@media (max-width: 768px) {
+    .orders-container {
+        padding: 30px 20px;
+    }
 }

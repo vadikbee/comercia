@@ -1,13 +1,21 @@
 .privacy-page {
-    max-width: 800px;
-    margin: 0 auto; /* Центрируем текст */
-    padding-bottom: 60px;
+    /* --- ДЕЛАЕМ БЕЛУЮ КАРТОЧКУ --- */
+    background-color: #EAEFF8;
+    border-radius: 30px;
+    padding: 60px 80px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    
+    /* Центрируем и ограничиваем ширину */
+    max-width: 1000px;
+    margin: 40px auto; 
+    margin-bottom: 60px;
 }
 
 .privacy-title {
     font-size: 36px;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 40px;
+    text-align: center;
 }
 
 .privacy-content p {
@@ -15,22 +23,32 @@
     line-height: 1.6;
     color: #333;
     margin-bottom: 20px;
+    text-align: justify; /* Красивое выравнивание текста */
 }
 
 .privacy-content h2 {
     font-size: 22px;
-    font-weight: 600;
+    font-weight: 700;
     margin-top: 40px;
     margin-bottom: 15px;
     color: #000;
 }
 
 .privacy-content ul {
-    list-style: disc; /* Возвращаем точки для списка */
+    list-style: disc;
     padding-left: 20px;
     margin-bottom: 20px;
 }
 
 .privacy-content li {
     margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .privacy-page {
+        padding: 30px;
+        margin: 20px;
+    }
 }

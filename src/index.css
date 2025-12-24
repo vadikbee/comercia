@@ -1,48 +1,47 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
-
-/* Если Ruberoid платный, заменим его на похожий, например, Montserrat или оставим Inter для всего */
-
 :root {
-  /* Цвета из макета */
-  --bg-color: #EAEFF8;       /* Светло-голубой фон */
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Цвета */
+  --bg-color: #EAEFF8;       /* Светло-серый фон */
   --white: #FFFFFF;
-  --blue-primary: #2181F3;   /* Основной синий */
-  --blue-hover: #0d6efd;
-  --orange-accent: #FF5B04;  /* Оранжевый (для бейджей и акцентов) */
-  
+  --blue-primary: #2181F3;
   --text-main: #000000;
-  --text-gray: #777C82;      /* Серый текст */
-  --text-light-gray: #9A9A9A;
-  
-  --border-radius-card: 30px; /* Большое скругление для карточек */
-  --border-radius-btn: 12px;
-  
-  /* Отступы */
-  --page-padding: 0 60px;
+  --text-gray: #777C82;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Inter', system-ui, sans-serif;
-  background-color: var(--bg-color);
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-color); /* Применяем серый фон */
   color: var(--text-main);
-  -webkit-font-smoothing: antialiased;
-  /* Убираем лишние отступы, если были */
-  min-height: 100vh;
 }
 
-/* Сброс стилей для кнопок по умолчанию */
-button {
-  font-family: 'Inter', sans-serif;
+* { box-sizing: border-box; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; padding: 0; margin: 0; }
+
+/* --- ГЛАВНАЯ КНОПКА "В КАТАЛОГ" (Серый -> Синий) --- */
+.btn-go-shopping {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background-color: #E0E0E0; /* Серый (неактивный вид) */
+    color: #333;               /* Темный текст */
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
 
-
-#root {
-  /* Убираем flex-центрирование и паддинги, которые сжимали сайт */
-  display: block; 
-  width: 100%;
-  min-height: 100vh;
-  padding: 0; /* ВАЖНО: убираем отступы, чтобы фон растянулся */
+.btn-go-shopping:hover {
+    background-color: var(--blue-primary); /* Синий при наведении */
+    color: var(--white);                   /* Белый текст */
+    transform: translateY(-2px);           /* Легкий подъем */
+    box-shadow: 0 4px 10px rgba(33, 129, 243, 0.3);
 }

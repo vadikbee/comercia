@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // Добавил Link
 import { AppContext } from "../../features/app_context/AppContext";
 import CartItemCard from "./ui/CartItemCard";
 import "./ui/Cart.css";
@@ -9,15 +9,15 @@ export default function Cart() {
   const { cart } = useContext(AppContext);
   const navigate = useNavigate();
 
-
+  // Инициализация выбранных ID (все выбраны по умолчанию)
   const [selectedIds, setSelectedIds] = useState<string[]>(() => 
     cart.items.map((i: CartItem) => i.product.id)
   );
 
-
+  // Хэш для отслеживания изменений состава корзины
   const cartIdsHash = JSON.stringify(cart.items.map((i: CartItem) => i.product.id));
-
   
+  // Если товары изменились (удалили что-то), обновляем список выбранных
   useEffect(() => {
     setSelectedIds(JSON.parse(cartIdsHash));
   }, [cartIdsHash]);
@@ -43,22 +43,25 @@ export default function Cart() {
     }
   };
 
+  // --- ПУСТАЯ КОРЗИНА ---
   if (cart.items.length === 0) {
     return (
       <div className="cart-page" style={{textAlign: 'center', paddingTop: '100px'}}>
-        <h1 className="cart-title"style={{ marginRight: '5%'}}>
-          <p> basket</p></h1>
+        <h1 className="cart-title" style={{ marginRight: '5%'}}>Basket</h1>
         <div className="empty-state">
-          <i className="bi bi-cart-x" style={{ fontSize: '48px', marginBottom: '20px', display: 'block' }}></i>
-          <p>Your basket is empty</p>
-          <button className="btn-confirm" style={{width: '200px', marginTop: '20px'}} onClick={() => navigate('/')}>
+          <i className="bi bi-cart-x" style={{ fontSize: '48px', marginBottom: '20px', display: 'block', color: '#ccc' }}></i>
+          <p style={{ fontSize: '18px', color: '#777', marginBottom: '20px' }}>Your basket is empty</p>
+          
+          {/* КНОПКА КАК В ЗАКАЗАХ */}
+          <Link to="/" className="btn-go-shopping">
              Go to Catalog
-          </button>
+          </Link>
         </div>
       </div>
     );
   }
 
+  // --- ПОЛНАЯ КОРЗИНА ---
   return (
     <div className="cart-page">
       <div className="cart-header-block">

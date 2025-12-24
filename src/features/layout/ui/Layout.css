@@ -1,39 +1,38 @@
 /* 1. ГЛОБАЛЬНАЯ ОБЕРТКА */
-/* Прижимает футер к низу и убирает горизонтальную прокрутку */
 .layout-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  width: 100%;
-  overflow-x: hidden;
-  background-color: var(--bg-color); /* #EAEFF8 или ваш цвет фона */
+    width: 100%;
+    min-height: 100vh;
+    background-color: transparent; /* Прозрачный, чтобы видно серый фон body */
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
 }
 
-/* 2. КОНТЕЙНЕР */
-/* Ограничивает ширину контента по центру (как в дизайне) */
+/* 2. КОНТЕЙНЕР (Ограничитель контента) */
+/* Используется внутри хедера и футера для центрирования */
 .container {
-  max-width: 1240px;
+  max-width: 1440px; /* Максимальная ширина контента */
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  
   box-sizing: border-box;
 }
 
 /* --- ШАПКА (HEADER) --- */
 header {
-  width: 100%;
-  padding: 30px 0; /* Отступ сверху/снизу */
+  width: 100%; /* На всю ширину */
+  padding: 30px 0;
   background: transparent;
-  flex-shrink: 0; /* Чтобы шапка не сжималась */
+  flex-shrink: 0;
 }
 
-/* Внутренний блок шапки (внутри контейнера), который выстраивает элементы в ряд */
+/* Внутренний блок шапки */
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: 20px;
+  /* Контент центрируется благодаря классу .container в TSX */
 }
 
 /* Логотип */
@@ -42,19 +41,25 @@ header {
   align-items: center;
   text-decoration: none;
   flex-shrink: 0;
+  font-family: 'Inter', sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 24px;
+  color: #000;
+  gap: 10px;
 }
 
 .site-logo {
-  height: 50px;
+  height: 40px;
   width: auto;
   object-fit: contain;
 }
 
-/* МЕНЮ НАВИГАЦИИ (Восстанавливаем стили) */
+/* МЕНЮ НАВИГАЦИИ */
 .navbar-nav {
-  display: flex;          /* Выстраивает пункты в ряд */
-  gap: 50px;              /* Расстояние между пунктами */
-  list-style: none;       /* Убирает точки списка */
+  display: flex;
+  gap: 40px;
+  list-style: none;
   margin: 0;
   padding: 0;
   align-items: center;
@@ -62,46 +67,40 @@ header {
 
 .nav-link {
   font-family: 'Inter', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
-  color: #777C82;         /* Серый цвет текста */
-  text-decoration: none;  /* Убирает подчеркивание */
+  color: #777C82;
+  text-decoration: none;
   transition: color 0.2s;
   white-space: nowrap;
 }
 
 .nav-link:hover, .nav-link.active {
-  color: #2181F3;         /* Синий при наведении */
+  color: #2181F3;
 }
 
 /* ИКОНКИ СПРАВА */
 .nav-icons {
   display: flex;
-  gap: 30px;
+  gap: 25px;
   align-items: center;
   flex-shrink: 0;
 }
 
 .icon-btn {
-  font-size: 24px;
-  color: #777C82;
+  font-size: 22px;
+  color: #000;
   position: relative;
   cursor: pointer;
   text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s;
 }
 
-.icon-btn:hover {
-  color: #000;
-}
-
-/* Бейджик корзины */
 .cart-badge {
   position: absolute;
-  top: -8px;
+  top: -5px;
   right: -8px;
   background-color: #FF5B04;
   color: white;
@@ -118,24 +117,45 @@ header {
 
 /* --- ОСНОВНОЙ КОНТЕНТ --- */
 main {
-  flex: 1; /* Растягивается на всю свободную высоту */
+  flex: 1;
   width: 100%;
-  padding: 0; /* Убираем отступы, чтобы баннеры были на всю ширину */
+  padding: 0; /* Без отступов, чтобы баннеры были от края до края */
   display: flex;
   flex-direction: column;
 }
 
-/* --- ПОДВАЛ (FOOTER) --- */
-footer {
-  width: 100%;
-  background-color: #110D0A; /* Черная плашка на всю ширину */
-  color: #9A9A9A;
-  margin-top: auto; /* Прижимает футер к низу страницы */
-  padding: 60px 0 40px 0;
-  border-radius: 0; /* Убираем скругления */
+/* --- ССЫЛКА НАД ПОДВАЛОМ (Privacy Policy) --- */
+.pre-footer-link {
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    margin-top: auto;
+    background-color: transparent;
+    /* Черная линия */
+    margin-bottom: 0;
 }
 
-/* Стили внутри футера */
+.pre-footer-link a {
+    color: #000;
+    text-decoration: underline;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.pre-footer-link a:hover {
+    color: #2181F3;
+    text-decoration: none;
+}
+
+/* --- ПОДВАЛ (FOOTER) --- */
+footer {
+  width: 100%; /* На всю ширину экрана */
+  background-color: #110D0A;
+  color: #9A9A9A;
+  padding: 60px 0 40px 0;
+}
+
+/* Сетка внутри футера */
 .footer-grid {
   display: flex;
   justify-content: space-between;
@@ -154,7 +174,7 @@ footer {
 .footer-col-title {
   color: #FFFFFF;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 10px;
 }
 
@@ -174,6 +194,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   padding-top: 20px;
+  border-top: 1px solid #333; /* Линия внутри футера */
 }
 
 .social-icons {
@@ -192,8 +213,17 @@ footer {
   opacity: 1;
 }
 
-/* --- АДАПТИВ (Мобильная версия) --- */
-@media (max-width: 900px) {
+/* --- АДАПТИВНОСТЬ --- */
+@media (max-width: 992px) {
+  .header-inner {
+    padding: 20px;
+  }
+  .navbar-nav {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
   .header-inner {
     flex-wrap: wrap;
     justify-content: center;
@@ -201,9 +231,15 @@ footer {
   }
   
   .navbar-nav {
-    gap: 20px;
-    flex-wrap: wrap;
+    width: 100%;
     justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .nav-icons {
+    position: absolute;
+    right: 20px;
+    top: 35px;
   }
 
   .footer-grid {
@@ -216,26 +252,4 @@ footer {
     gap: 20px;
     align-items: flex-start;
   }
-}
-/* --- Ссылка над подвалом (Политика конфиденциальности) --- */
-.pre-footer-link {
-    width: 100%;
-    text-align: center;      /* Центрируем текст */
-    padding: 20px 0;         /* Отступы сверху и снизу */
-    margin-top: auto;        /* Прижимаем к низу */
-    background-color: transparent;
-    border-top: 1px solid #000000; /* Тонкая черная линия разделитель */
-    margin-bottom: 0;        /* Чтобы вплотную к черному футеру */
-}
-
-.pre-footer-link a {
-    color: #000;             /* Черный цвет текста */
-    text-decoration: underline; /* Подчеркивание как ссылке */
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.pre-footer-link a:hover {
-    color: #2181F3;          /* Синий при наведении */
-    text-decoration: none;
 }

@@ -1,37 +1,74 @@
 .home-page {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    padding: 0 40px; /* Отступы по бокам */
+    width: 100%;
+    /* Убрали padding у body, чтобы баннер касался краев */
 }
 
+/* --- ГЛАВНЫЙ БАННЕР НА ВСЮ ШИРИНУ --- */
+.main-banner {
+    width: 100%;
+    height: 450px;
+    background-color: #2181F3;
+    /* Убираем border-radius, если хотим от края до края, или оставляем только снизу */
+    border-radius: 0 0 40px 40px; 
+    display: flex;
+    justify-content: center; /* Центрируем контент внутри */
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+    margin-bottom: 40px;
+}
 
+/* Внутренний контейнер баннера (ограничиваем ширину контента) */
+.banner-content-wrapper {
+    width: 100%;
+    max-width: 1440px; /* Контент не шире 1440px */
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+}
 
+.banner-text-block {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
 .banner-title {
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 15px;
-    line-height: 1.2;
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 1.1;
+    margin: 0;
+    color: #FFFFFF;
 }
 
 .banner-subtitle {
-    font-size: 20px;
+    font-family: 'Inter', sans-serif;
     font-weight: 500;
-    margin-bottom: 30px;
+    font-size: 20px;
+    line-height: 1.5;
     opacity: 0.9;
+    margin: 0;
+    color: #FFFFFF;
 }
 
-
+/* Поиск */
 .search-bar {
-    background: var(--white);
+    background: #FFFFFF;
     border-radius: 12px;
-    padding: 10px 20px;
+    padding: 15px 25px;
     width: 100%;
-    max-width: 600px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
 .search-bar input {
@@ -39,17 +76,52 @@
     outline: none;
     width: 100%;
     font-size: 16px;
-    color: var(--text-gray);
+    color: #333;
 }
 
-.search-bar i {
-    color: var(--text-gray);
+/* --- КАРТИНКИ (Позиционируются относительно banner-content-wrapper) --- */
+.banner-decor {
+    position: absolute;
+    object-fit: contain;
+    z-index: 1;
+    pointer-events: none;
 }
 
+.decor-laptop {
+    top: 50px;
+    right: 250px; /* Отступ от правой границы контейнера 1440px */
+    width: 350px;
+    transform: rotate(-10deg);
+}
 
-.categories-grid {
+.decor-phone {
+    bottom: -60px;
+    right: 50px;
+    width: 240px;
+    transform: rotate(5deg);
+    z-index: 2;
+}
+
+.decor-headphones {
+    top: 30px;
+    right: -20px;
+    width: 200px;
+    transform: rotate(15deg);
+}
+
+/* --- КОНТЕЙНЕР ДЛЯ ОСТАЛЬНОГО КОНТЕНТА (Категории, Товары) --- */
+.home-container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.categories-grid, .products-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-between;
 }

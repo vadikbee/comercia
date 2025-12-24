@@ -79,8 +79,8 @@
 }
 
 .btn-add-large {
-    background-color: var(--blue-primary);
-    color: white;
+    background-color: #0d6efd;
+    color: rgb(255, 255, 255);
     border: none;
     padding: 15px 40px;
     font-size: 18px;
@@ -96,4 +96,6 @@
 
 .btn-add-large:hover {
     background-color: #0d6efd;
+    color: rgb(0, 0, 0);
+
 }
