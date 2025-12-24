@@ -1,25 +1,31 @@
 import type { OrderType } from "../model/OrderType";
 
 export default class OrderDao {
-    static #storageKey = "orders-komercia";
+    static #storageKey = "user-orders";
 
     // Получить все заказы
     static getOrders(): OrderType[] {
-        const data = localStorage.getItem(this.#storageKey);
+        const data = window.localStorage.getItem(this.#storageKey);
         if (!data) return [];
         try {
             return JSON.parse(data);
-        } catch (e) {
-            console.error("Order parse error", e);
+        } catch {
             return [];
         }
     }
 
-    // Добавить новый заказ
+    // Сохранить новый заказ (для справки, пригодится в Checkout)
     static addOrder(order: OrderType) {
         const orders = this.getOrders();
-        // Добавляем новый заказ в начало списка
-        orders.unshift(order);
-        localStorage.setItem(this.#storageKey, JSON.stringify(orders));
+        orders.unshift(order); // Добавляем в начало
+        window.localStorage.setItem(this.#storageKey, JSON.stringify(orders));
+    }
+
+    
+    static deleteOrder(orderId: string) {
+        const orders = this.getOrders();
+        // Оставляем только те, у которых ID не совпадает с удаляемым
+        const newOrders = orders.filter(order => order.id !== orderId);
+        window.localStorage.setItem(this.#storageKey, JSON.stringify(newOrders));
     }
 }

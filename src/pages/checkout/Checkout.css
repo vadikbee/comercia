@@ -152,8 +152,8 @@
 
 .btn-confirm-order {
     width: 100%;
-    background-color: var(--blue-primary);
-    color: rgb(51, 48, 48);
+    background-color: #0d6efd;
+    color: rgb(255, 255, 255);
     border: none;
     padding: 15px;
     border-radius: 12px;
@@ -164,4 +164,5 @@
 
 .btn-confirm-order:hover {
     background-color: #0d6efd;
+    color: rgb(0, 0, 0);
 }

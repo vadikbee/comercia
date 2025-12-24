@@ -217,3 +217,25 @@ footer {
     align-items: flex-start;
   }
 }
+/* --- Ссылка над подвалом (Политика конфиденциальности) --- */
+.pre-footer-link {
+    width: 100%;
+    text-align: center;      /* Центрируем текст */
+    padding: 20px 0;         /* Отступы сверху и снизу */
+    margin-top: auto;        /* Прижимаем к низу */
+    background-color: transparent;
+    border-top: 1px solid #000000; /* Тонкая черная линия разделитель */
+    margin-bottom: 0;        /* Чтобы вплотную к черному футеру */
+}
+
+.pre-footer-link a {
+    color: #000;             /* Черный цвет текста */
+    text-decoration: underline; /* Подчеркивание как ссылке */
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.pre-footer-link a:hover {
+    color: #2181F3;          /* Синий при наведении */
+    text-decoration: none;
+}

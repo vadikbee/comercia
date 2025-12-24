@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import CartDao from "../../entities/cart/api/CartDao";
 import "./Checkout.css";
 
-// 1. Импортируем недостающие типы и DAO
 import type CartItem from "../../entities/cart/model/CartItem"; 
 import OrderDao from "../../entities/order/api/OrderDao";
 import type { OrderType } from "../../entities/order/model/OrderType";
@@ -40,13 +39,13 @@ export default function Checkout() {
     const deliveryCost = formData.delivery === 'courier' ? 20 : 0;
     const finalPrice = cart.price + deliveryCost;
 
-    // 2. Формируем объект заказа
+    // 2. Формируем объект заказа (ИСПРАВЛЕНО: названия полей совпадают с OrderType)
     const newOrder: OrderType = {
         id: Date.now().toString(), // Генерируем ID
         date: new Date().toLocaleDateString(), // Текущая дата
         items: [...cart.items], // Копируем товары
-        totalPrice: finalPrice,
-        deliveryMethod: formData.delivery === 'pickup' ? 'Pickup' : 'Courier',
+        total: finalPrice, // БЫЛО: totalPrice, СТАЛО: total
+        method: formData.delivery === 'pickup' ? 'Pickup' : 'Courier', // БЫЛО: deliveryMethod, СТАЛО: method
         status: 'Processing'
     };
 
@@ -133,7 +132,6 @@ export default function Checkout() {
             <h2 className="summary-title">Your order</h2>
             
             <div className="summary-items">
-                {/* 2. ИСПРАВЛЕНИЕ: Явно указываем тип (item: CartItem) */}
                 {cart.items.map((item: CartItem) => (
                     <div className="summary-item-row" key={item.product.id}>
                         <span className="item-name">{item.product.name} x {item.cnt}</span>

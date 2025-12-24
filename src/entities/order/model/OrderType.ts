@@ -5,8 +5,8 @@ export type OrderStatus = "Processing" | "Delivered" | "Cancelled";
 export interface OrderType {
     id: string;
     date: string;
-    items: CartItem[]; // Товары, которые были в корзине
-    totalPrice: number;
-    deliveryMethod: string; // "Pickup" или "Courier"
-    status: OrderStatus;
+    status: string;
+    total: number;       // Добавили поле
+    method: string;      // Добавили поле
+    items: CartItem[];   // Используем правильный тип товаров
 }
