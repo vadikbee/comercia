@@ -98,7 +98,8 @@
 .btn-confirm {
     width: 100%;
     background-color: var(--blue-primary);
-    color: #000000; 
+    background-color: #0d6efd;
+    color: #FFFFFF; 
     border: none;
     border-radius: 12px;
     padding: 15px;
@@ -110,7 +111,7 @@
 
 .btn-confirm:hover {
     background-color: #0d6efd;
-    color: #FFFFFF; 
+    color: #000000; 
 }
 
 .empty-state {

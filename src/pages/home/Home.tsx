@@ -81,7 +81,7 @@ export default function Home() {
       {/* Секция Хиты Продаж */}
       <div style={{ marginTop: '20px' }}>
         <h2 style={{ fontSize: '24px', fontWeight: 700, marginBottom: '20px' }}>Bestsellers</h2>
-        <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px'}}>
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '20px', marginBottom: '10%'}}>
            {bestsellers.map((product) => (
              <ProductCard product={product} key={product.id} />
            ))}
