@@ -46,7 +46,8 @@ export default function Cart() {
   if (cart.items.length === 0) {
     return (
       <div className="cart-page" style={{textAlign: 'center', paddingTop: '100px'}}>
-        <h1 className="cart-title">Basket</h1>
+        <h1 className="cart-title"style={{ marginRight: '5%'}}>
+          <p> basket</p></h1>
         <div className="empty-state">
           <i className="bi bi-cart-x" style={{ fontSize: '48px', marginBottom: '20px', display: 'block' }}></i>
           <p>Your basket is empty</p>

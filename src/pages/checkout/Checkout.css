@@ -6,6 +6,7 @@
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 30px;
+    margin-left: 5%;
 }
 
 .checkout-layout {
@@ -30,6 +31,7 @@
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 20px;
+    
 }
 
 .form-row {
@@ -130,6 +132,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
+    
 }
 
 .divider {
@@ -150,7 +153,7 @@
 .btn-confirm-order {
     width: 100%;
     background-color: var(--blue-primary);
-    color: white;
+    color: rgb(51, 48, 48);
     border: none;
     padding: 15px;
     border-radius: 12px;
