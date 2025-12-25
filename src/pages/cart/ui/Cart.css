@@ -114,8 +114,12 @@
     color: #000000; 
 }
 
+/* Блок пустой корзины */
 .empty-state {
+    display: flex;
+    flex-direction: column; /* Элементы строго вертикально: Иконка -> Текст -> Кнопка */
+    align-items: center;    /* Выравнивание по центру */
+    justify-content: center;
+    padding: 60px 0;
     text-align: center;
-    padding: 50px;
-    color: #777;
 }

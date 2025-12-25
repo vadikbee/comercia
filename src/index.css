@@ -3,20 +3,23 @@
   line-height: 1.5;
   font-weight: 400;
 
-  /* Цвета */
-  --bg-color: #EAEFF8;       /* Светло-серый фон */
+  /* Глобальные переменные */
+  --bg-color: #EAEFF8;       /* Тот самый серый */
   --white: #FFFFFF;
   --blue-primary: #2181F3;
   --text-main: #000000;
   --text-gray: #777C82;
 }
 
-body {
+html, body {
+  height: 100%; /* Важно для растягивания */
   margin: 0;
   padding: 0;
+}
+
+body {
   min-width: 320px;
-  min-height: 100vh;
-  background-color: var(--bg-color); /* Применяем серый фон */
+  background-color: var(--bg-color) !important; /* Принудительно серый фон */
   color: var(--text-main);
 }
 
@@ -24,24 +27,30 @@ body {
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; padding: 0; margin: 0; }
 
-/* --- ГЛАВНАЯ КНОПКА "В КАТАЛОГ" (Серый -> Синий) --- */
+/* Стиль кнопки (оставляем как было) */
 .btn-go-shopping {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 12px 30px;
-    background-color: #E0E0E0; /* Серый (неактивный вид) */
-    color: #333;               /* Темный текст */
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
+    display: inline-flex !important;       
+    align-items: center !important;
+    justify-content: center !important;
+    height: 35px !important;
+    min-width: 107px !important;
+    padding: 0 15px !important;
+    margin-top: 25px !important;
+    background-color: #C8CACE !important;
+    border-radius: 10px !important;
+    border: none !important;
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 12px !important;
+    line-height: 35px !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
 }
 
 .btn-go-shopping:hover {
-    background-color: var(--blue-primary); /* Синий при наведении */
-    color: var(--white);                   /* Белый текст */
-    transform: translateY(-2px);           /* Легкий подъем */
-    box-shadow: 0 4px 10px rgba(33, 129, 243, 0.3);
+    background-color: #2181F3 !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
 }

@@ -1,3 +1,5 @@
+import './index.css'
+
 declare global {
   interface Number {
     toMoney: () => string;

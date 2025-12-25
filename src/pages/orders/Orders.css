@@ -12,7 +12,7 @@
     padding: 40px 60px;
     max-width: 1000px;
     width: 100%;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    
     min-height: 400px;
 }
 
@@ -138,4 +138,18 @@
     .orders-container {
         padding: 30px 20px;
     }
+}
+
+/* Белая карточка "Нет заказов" */
+.empty-state-card {
+    background-color: #FFFFFF;
+    border-radius: 30px;
+    padding: 60px 80px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    
+    display: flex;
+    flex-direction: column; /* Вертикальный столбик */
+    align-items: center;    /* Центр по горизонтали */
+    justify-content: center;
 }

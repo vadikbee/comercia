@@ -50,11 +50,11 @@ export default function Cart() {
         <h1 className="cart-title" style={{ marginRight: '5%'}}>Basket</h1>
         <div className="empty-state">
           <i className="bi bi-cart-x" style={{ fontSize: '48px', marginBottom: '20px', display: 'block', color: '#ccc' }}></i>
-          <p style={{ fontSize: '18px', color: '#777', marginBottom: '20px' }}>Your basket is empty</p>
+          <p style={{ fontSize: '18px', color: '#777', marginBottom: '0' }}>Your basket is empty</p>
           
-          {/* КНОПКА КАК В ЗАКАЗАХ */}
+          {/* ВОТ ЭТА КНОПКА */}
           <Link to="/" className="btn-go-shopping">
-             Go to Catalog
+             Go to catalog
           </Link>
         </div>
       </div>
